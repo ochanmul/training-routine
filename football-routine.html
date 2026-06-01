@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WR/CB 트레이닝 루틴</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: 'Apple SD Gothic Neo', 'Pretendard', 'Malgun Gothic', sans-serif;
+    background: #0f0f0f;
+    color: #f0f0f0;
+    min-height: 100vh;
+    padding: 24px 16px 48px;
+  }
+
+  .header { margin-bottom: 28px; }
+  .header-eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #e76f51;
+    font-weight: 700;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .header-title {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+  }
+  .header-sub { color: #888; font-weight: 400; font-size: 14px; }
+
+  /* Day Selector */
+  .day-selector {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 24px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  .day-selector::-webkit-scrollbar { display: none; }
+  .day-btn {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    background: #1e1e1e;
+    color: #888;
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+  .day-btn.active { color: #fff; }
+
+  /* Card */
+  .card {
+    background: #1a1a1a;
+    border-radius: 16px;
+    border: 1px solid #2a2a2a;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .card-header {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid #2a2a2a;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .card-title { font-size: 18px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 4px; }
+  .card-sub { font-size: 13px; color: #888; }
+  .card-duration { font-size: 12px; color: #666; margin-top: 4px; }
+  .tag {
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    flex-shrink: 0;
+  }
+
+  /* Rest Day */
+  .rest-day {
+    padding: 32px 20px;
+    text-align: center;
+    color: #555;
+  }
+  .rest-icon { font-size: 32px; margin-bottom: 12px; }
+  .rest-note { font-size: 14px; color: #888; line-height: 1.7; }
+
+  /* Exercise Row */
+  .exercise-row {
+    padding: 16px 20px;
+    border-bottom: 1px solid #222;
+  }
+  .exercise-row:last-child { border-bottom: none; }
+  .exercise-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  .exercise-left { display: flex; align-items: center; gap: 10px; }
+  .ex-num {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    font-size: 11px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .ex-name { font-size: 14px; font-weight: 700; }
+  .exercise-right { text-align: right; flex-shrink: 0; margin-left: 12px; }
+  .ex-volume { font-size: 12px; font-weight: 700; }
+  .ex-rest { font-size: 11px; color: #555; margin-top: 2px; }
+  .ex-note { font-size: 12px; color: #777; line-height: 1.6; padding-left: 32px; margin-bottom: 4px; }
+  .ex-effect { font-size: 11px; font-weight: 600; padding-left: 32px; }
+
+  /* Weekly Overview */
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #555;
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .overview-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    border: 1px solid #2a2a2a;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .overview-row {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #222;
+    gap: 12px;
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+  .overview-row:last-child { border-bottom: none; }
+  .overview-row:hover { background: #222; }
+  .overview-row.active { background: #222; }
+  .day-badge {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    font-size: 11px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .overview-info { flex: 1; }
+  .overview-title { font-size: 13px; font-weight: 700; }
+  .overview-sub { font-size: 11px; color: #666; }
+  .overview-tag {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    padding: 3px 8px;
+    border-radius: 12px;
+  }
+
+  /* Field row */
+  .field-row {
+    padding: 10px 16px;
+    border-top: 1px solid #2a2a2a;
+    display: flex;
+    gap: 8px;
+  }
+  .field-btn {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1px solid transparent;
+  }
+  .field-btn-title { font-size: 12px; font-weight: 800; }
+  .field-btn-sub { font-size: 11px; color: #888; margin-top: 2px; }
+
+  /* Tip */
+  .tip {
+    margin-top: 16px;
+    padding: 14px 16px;
+    background: #1a1a1a;
+    border-radius: 12px;
+    border: 1px solid #2a2a2a;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.7;
+  }
+  .tip-label { color: #e76f51; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">WR / CB Training</div>
+  <div class="header-title" id="mainQuote"></div>
+</div>
+
+<div class="day-selector" id="daySelector"></div>
+<div id="cardArea"></div>
+
+<div class="section-label">Weekly Overview</div>
+<div class="overview-card" id="overviewArea"></div>
+<div class="field-row" id="fieldRow"></div>
+
+<div class="tip">
+  <span class="tip-label">필드 운영 원칙 </span>
+  주 1회 → A 또는 B 택 1, 다음 주에 나머지 수행 · 주 2회 → A·B 각 1회, 사이 하루 이상 간격 필수
+</div>
+
+<script>
+const days = [
+  {
+    id: "mon", label: "월", title: "헬스 Day 1", subtitle: "하체 / 후면 스트렝스",
+    tag: "STRENGTH", color: "#e63946",
+    exercises: [
+      { name: "제르셔 스쿼트", volume: "4세트 × 6-8회", rest: "휴식 2분",
+        note: "바벨을 팔꿈치 안쪽에 끼고 골반 깊게 열며 앉았다 일어남",
+        effect: "블로킹·잼 시 코어 스트렝스" },
+      { name: "케틀벨 스윙", volume: "4세트 × 15회", rest: "휴식 1분 30초",
+        note: "힙 힌지 후 골반 튕겨내는 폭발적 힘으로 가슴 높이까지",
+        effect: "둔근·후면 사슬 폭발력 → 초반 가속" },
+      { name: "짐볼 안티 로테이션 플랭크", volume: "3세트 × 좌우 각 5바퀴", rest: "휴식 1분",
+        note: "짐볼 위 팔꿈치 플랭크, 작은 원 그리며 골반 고정",
+        effect: "충돌·착지 후 척추 중심 유지" },
+      { name: "풀업", volume: "4세트 × 맥스", rest: "휴식 1분 30초",
+        note: "가슴 열어 명치를 바에 가깝게, 내릴 때도 광배근으로 버팀",
+        effect: "하이 포인트 캐치·태클 상체 후면" },
+      { name: "데드버그", volume: "3세트 × 좌우 각 8회", rest: "휴식 45초",
+        note: "허리 바닥 고정, 반대 팔·다리 동시에 뻗고 복귀",
+        effect: "대각선 교차 패턴 각인 → 달리기 자세" },
+    ]
+  },
+  {
+    id: "tue", label: "화", title: "완전 휴식", subtitle: "리커버리",
+    tag: "REST", color: "#457b9d", restDay: true,
+    restNote: "수면 7-8시간 / 단백질·수분 충분히", restIcon: "😴"
+  },
+  {
+    id: "wed", label: "수", title: "헬스 Day 2", subtitle: "밸런스 / 상하체 협응",
+    tag: "BALANCE", color: "#f4a261",
+    exercises: [
+      { name: "불가리안 스플릿 스쿼트", volume: "3세트 × 한 발당 8회", rest: "휴식 1분 30초",
+        note: "뒷발 벤치에 올리고 앞발 뒤꿈치에 체중, 무릎 수직 유지",
+        effect: "컷팅·런닝 시 한 발 지탱력" },
+      { name: "한 팔 한 다리 덤벨 벤치프레스", volume: "4세트 × 각 팔당 8회", rest: "휴식 1분 30초",
+        note: "반대쪽 발 들고 한 발로 지탱, 회전 저항하며 수행",
+        effect: "전면 대각선 사슬 → 프레스 릴리즈 교차력" },
+      { name: "케틀벨 싱글 레그 데드리프트", volume: "3세트 × 한 발당 8회", rest: "휴식 1분",
+        note: "한 발 서서 반대 손 케틀벨, 골반 바닥과 평행 유지",
+        effect: "발→골반 정렬 → 런닝 좌우 흐름 차단" },
+      { name: "저항밴드 팔로프 프레스", volume: "3세트 × 양방향 각 12회", rest: "휴식 1분",
+        note: "밴드 장력 코어로 버티며 양손 앞으로 뻗었다 복귀",
+        effect: "팔치기 시 상체 출렁임 차단" },
+    ]
+  },
+  {
+    id: "thu", label: "목", title: "리커버리 Day", subtitle: "근막 이완 / 스트레칭",
+    tag: "RECOVERY", color: "#2a9d8f", restDay: true,
+    restNote: "폼롤러 (IT밴드·둔근·종아리) + 피전 자세·월 스트레칭·햄스트링 스트레칭", restIcon: "🔁"
+  },
+  {
+    id: "fri", label: "금", title: "헬스 Day 3", subtitle: "신경계 활성화 / 상체",
+    tag: "NEURAL", color: "#7b2d8b",
+    exercises: [
+      { name: "덤벨 고블릿 스쿼트", volume: "3세트 × 10회", rest: "휴식 1분",
+        note: "덤벨 가슴 앞에 세워 들고 깊게 앉음",
+        effect: "고관절 가동성 → 다음 날 필드 힙턴 준비" },
+      { name: "바벨 벤치프레스", volume: "3세트 × 8회", rest: "휴식 1분 30초",
+        note: "날개뼈 밀착, 발 고정 후 명치 위로 내렸다 강하게 밀어 올림",
+        effect: "손싸움·블로커 타격 미는 힘 베이스" },
+      { name: "루프밴드 몬스터 워크 & 사이드 스텝", volume: "3세트 × 앞15·뒤15·옆15보", rest: "휴식 1분",
+        note: "무릎 위 밴드, 낮은 자세로 무릎 안으로 모이지 않게",
+        effect: "중둔근 활성화 → 필드 골반 흐름 차단" },
+    ]
+  },
+  {
+    id: "field-a", label: "필드 A", title: "필드 Day A", subtitle: "민첩성 + 가속",
+    tag: "FIELD", color: "#e76f51", duration: "35-40분",
+    exercises: [
+      { name: "웜업", volume: "10분", rest: "",
+        note: "월드 그레이티스트 스트레칭 5회 / 레그 스윙 앞뒤·좌우 각 15회 / 카프 레이즈 20회", effect: "" },
+      { name: "어질리티 래더 드릴 3종", volume: "각 2세트", rest: "15분 블록",
+        note: "원 인 원 아웃 / 이키 셔플 / 래터럴 인앤아웃 · 마지막 2세트 Stick 훈련",
+        effect: "잔발 스피드·발목 안정성" },
+      { name: "메디신볼 로테이셔널 스로", volume: "3세트 × 좌우 각 5회", rest: "",
+        note: "벽 향해 옆으로 서서 골반 회전 먼저, 상체 따라오며 폭발적으로 던짐",
+        effect: "힙턴 회전 폭발력 각인" },
+      { name: "월오프 가속 드릴", volume: "양발 각 10초 × 3세트", rest: "15분 블록",
+        note: "벽 45도 기울어 무릎 피스톤 액션, 첫 3-5보 추진 각도 각인",
+        effect: "초반 가속 자세" },
+      { name: "밴드 저항 스프린트", volume: "15m × 4회", rest: "완전 복귀 후",
+        note: "허리 밴드 저항 뚫고 100% 스피드로 질주",
+        effect: "지면 구동력 극대화" },
+      { name: "쿨다운", volume: "5분", rest: "",
+        note: "아동 자세 1분 / 발목 가동성 스트레칭 각 30초", effect: "" },
+    ]
+  },
+  {
+    id: "field-b", label: "필드 B", title: "필드 Day B", subtitle: "폭발력 + 인터벌",
+    tag: "FIELD", color: "#e76f51", duration: "35-40분",
+    exercises: [
+      { name: "웜업", volume: "10분", rest: "",
+        note: "월드 그레이티스트 스트레칭 5회 / 레그 스윙 앞뒤·좌우 각 15회 / 카프 레이즈 20회", effect: "" },
+      { name: "힐런", volume: "20-30m × 4회", rest: "완전 복귀 후 숨 고르고",
+        note: "15-20도 경사 전력 질주, 내려올 때 걷기",
+        effect: "둔근·햄스트링 과부하 → 순수 스피드" },
+      { name: "백페달 투 힐런", volume: "3회", rest: "15분 블록",
+        note: "평지 백페달 5m 후 힙턴하여 언덕 전력 질주",
+        effect: "CB 백페달→전진 전환 민첩성" },
+      { name: "실전 가속 인터벌", volume: "30m 질주 → 20m 조깅 × 6회", rest: "복귀 후 30-40초",
+        note: "폼 무너지면 그 세트 즉시 종료",
+        effect: "지친 상태 코어 통제력" },
+      { name: "쿨다운", volume: "5분", rest: "",
+        note: "아동 자세 1분 / 발목 가동성 스트레칭 각 30초", effect: "" },
+    ]
+  },
+  {
+    id: "sun", label: "일", title: "완전 휴식", subtitle: "리커버리",
+    tag: "REST", color: "#457b9d", restDay: true,
+    restNote: "아이싱 (토 필드 후 15분) / 수면 7-8시간 / 단백질·수분", restIcon: "😴"
+  },
+];
+
+let selected = "mon";
+
+function hex(color, alpha) {
+  const r = parseInt(color.slice(1,3),16);
+  const g = parseInt(color.slice(3,5),16);
+  const b = parseInt(color.slice(5,7),16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+function renderSelector() {
+  const el = document.getElementById("daySelector");
+  el.innerHTML = days.map(d => `
+    <button class="day-btn ${selected === d.id ? 'active' : ''}"
+      style="${selected === d.id ? `background:${d.color}` : ''}"
+      onclick="select('${d.id}')">${d.label}</button>
+  `).join("");
+}
+
+function renderCard() {
+  const d = days.find(x => x.id === selected);
+  const el = document.getElementById("cardArea");
+
+  let body = "";
+  if (d.restDay) {
+    body = `<div class="rest-day">
+      <div class="rest-icon">${d.restIcon}</div>
+      <div class="rest-note">${d.restNote}</div>
+    </div>`;
+  } else {
+    body = d.exercises.map((ex, i) => `
+      <div class="exercise-row">
+        <div class="exercise-top">
+          <div class="exercise-left">
+            <div class="ex-num" style="background:${hex(d.color,0.2)};color:${d.color}">${i+1}</div>
+            <div class="ex-name">${ex.name}</div>
+          </div>
+          <div class="exercise-right">
+            <div class="ex-volume" style="color:${d.color}">${ex.volume}</div>
+            ${ex.rest ? `<div class="ex-rest">${ex.rest}</div>` : ""}
+          </div>
+        </div>
+        ${ex.note ? `<div class="ex-note">${ex.note}</div>` : ""}
+        ${ex.effect ? `<div class="ex-effect" style="color:${hex(d.color,0.8)}">→ ${ex.effect}</div>` : ""}
+      </div>
+    `).join("");
+  }
+
+  el.innerHTML = `
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">${d.title}</div>
+          <div class="card-sub">${d.subtitle}</div>
+          ${d.duration ? `<div class="card-duration">⏱ ${d.duration}</div>` : ""}
+        </div>
+        <span class="tag" style="background:${d.color}">${d.tag}</span>
+      </div>
+      ${body}
+    </div>
+  `;
+}
+
+function renderOverview() {
+  const mainDays = days.filter(d => !d.id.startsWith("field"));
+  const fieldDays = days.filter(d => d.id.startsWith("field"));
+
+  document.getElementById("overviewArea").innerHTML = mainDays.map(d => `
+    <div class="overview-row ${selected === d.id ? 'active' : ''}" onclick="select('${d.id}')">
+      <div class="day-badge" style="background:${hex(d.color,0.15)};color:${d.color}">${d.label}</div>
+      <div class="overview-info">
+        <div class="overview-title">${d.title}</div>
+        <div class="overview-sub">${d.subtitle}</div>
+      </div>
+      <span class="overview-tag" style="color:${d.color};background:${hex(d.color,0.15)}">${d.tag}</span>
+    </div>
+  `).join("");
+
+  document.getElementById("fieldRow").innerHTML = fieldDays.map(d => `
+    <div class="field-btn" onclick="select('${d.id}')"
+      style="background:${selected === d.id ? hex(d.color,0.2) : hex(d.color,0.07)};
+             border-color:${selected === d.id ? d.color : hex(d.color,0.2)}">
+      <div class="field-btn-title" style="color:${d.color}">${d.title}</div>
+      <div class="field-btn-sub">${d.subtitle}</div>
+    </div>
+  `).join("");
+}
+
+function select(id) {
+  selected = id;
+  renderSelector();
+  renderCard();
+  renderOverview();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+const quotes = [
+  "안되면 될 때까지",
+  "억울하면 강해져라",
+  "나는 무서워하면서\n끝까지 걸어가는 사람",
+  "니가 있는 곳이 지옥이면\n멈출 이유가 더더욱 없다",
+  "뭐라도 해야지",
+  "봤으면 해라",
+  "벽장의 귀신은\n문을 여는 순간 사라진다",
+  "도망치지 마라\n네가 질 싸움이 아니다",
+  "Conditions will\nnever be perfect",
+  "스스로를\n자랑스럽게 만들어라",
+  "어제까지의 자신을 넘자",
+  "1등은 아무나 하는게 아니다",
+  "했을 때의 고통보다\n후회의 고통이 더 크다",
+];
+
+const q = quotes[Math.floor(Math.random() * quotes.length)];
+document.getElementById("mainQuote").innerHTML =
+  q.replace(/\n/g, "<br>") +
+  `<br><span class="header-sub">마스터 루틴 — 주간 스케줄</span>`;
+
+renderSelector();
+renderCard();
+renderOverview();
+</script>
+</body>
+</html>
