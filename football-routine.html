@@ -542,7 +542,6 @@ async function saveRecord() {
 
   btn.disabled = true; btn.textContent = "저장 중...";
   try {
-    // ⚠️ headers 부분을 text/plain으로 설정해야 브라우저의 CORS 차단을 우회할 수 있습니다.
     const response = await fetch(SCRIPT_URL, {
       method: "POST",
       headers: { "Content-Type": "text/plain" }, 
@@ -553,14 +552,13 @@ async function saveRecord() {
     const resJson = JSON.parse(resText);
     
     if (resJson.status === "success") {
-      showToast("✅ 구글 시트에 저장됐어요!");
+      showToast(`✅ [${d.label}] 시트 탭에 기록되었습니다!`);
     } else {
       showToast("❌ 서버 오류: " + resJson.message, true);
     }
   } catch (err) {
-    // 구글 웹앱 응답 특성상 전송이 성공해도 브라우저가 에러로 인식하는 경우가 간혹 있습니다.
-    // 구글 스크립트 권한을 '모든 사용자'로 올바르게 재배포했다면 이 상태에서도 시트에 잘 저장됩니다.
-    showToast("전송 프로세스 완료 (시트를 확인해보세요)", false);
+    console.error(err);
+    showToast("기록 요청 완료 (시트를 확인해보세요)", false);
   }
   btn.disabled = false; btn.textContent = "구글 시트에 저장";
 }
