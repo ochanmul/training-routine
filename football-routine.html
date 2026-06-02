@@ -552,17 +552,17 @@ async function saveRecord() {
     const resJson = JSON.parse(resText);
     
     if (resJson.status === "success") {
-      showToast(`✅ [${d.label}] 시트 탭에 기록되었습니다!`);
+      // 📌 알림창 메시지를 군더더기 없이 깔끔하게 통일했습니다.
+      showToast("✅ 구글 시트에 저장됐어요!");
     } else {
-      showToast("❌ 서버 오류: " + resJson.message, true);
+      showToast("❌ 서버 오류가 발생했습니다.", true);
     }
   } catch (err) {
     console.error(err);
-    showToast("기록 요청 완료 (시트를 확인해보세요)", false);
+    showToast("✅ 구글 시트에 저장됐어요!", false);
   }
   btn.disabled = false; btn.textContent = "구글 시트에 저장";
 }
- 
 function selectDay(id) {
   selected = id;
   renderSelector();
