@@ -508,6 +508,8 @@ function clearMemo() {
 }
 
 async function saveRecord() {
+  const pin = prompt("PIN 번호 4자리를 입력하세요");
+  if (pin !== "6508") { showToast("PIN 번호가 틀렸어요", true); return; }
   const d = days.find(x => x.id === selected);
   const memo = document.getElementById("memoText").value.trim();
   const btn = document.getElementById("saveBtn");
