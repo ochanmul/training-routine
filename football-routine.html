@@ -13,94 +13,92 @@
     min-height: 100vh;
     padding: 24px 16px 48px;
   }
-
   .header { margin-bottom: 28px; }
   .header-eyebrow {
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: #e76f51;
-    font-weight: 700;
-    margin-bottom: 6px;
-    text-transform: uppercase;
+    font-size: 11px; letter-spacing: 4px; color: #e76f51;
+    font-weight: 700; margin-bottom: 6px; text-transform: uppercase;
   }
-  .header-title {
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    line-height: 1.3;
-  }
+  .header-title { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.3; }
   .header-sub { color: #888; font-weight: 400; font-size: 14px; }
 
   .day-selector {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 24px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    scrollbar-width: none;
+    display: flex; gap: 6px; margin-bottom: 24px;
+    overflow-x: auto; padding-bottom: 4px; scrollbar-width: none;
   }
   .day-selector::-webkit-scrollbar { display: none; }
   .day-btn {
-    flex-shrink: 0;
-    padding: 8px 14px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 700;
-    background: #1e1e1e;
-    color: #888;
-    transition: all 0.15s;
-    font-family: inherit;
+    flex-shrink: 0; padding: 8px 14px; border-radius: 8px; border: none;
+    cursor: pointer; font-size: 12px; font-weight: 700;
+    background: #1e1e1e; color: #888; transition: all 0.15s; font-family: inherit;
   }
   .day-btn.active { color: #fff; }
 
-  .card {
+  /* 필드 원칙 */
+  .field-principle {
     background: #1a1a1a;
-    border-radius: 16px;
+    border-radius: 12px;
+    border: 1px solid #2a2a2a;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.7;
+  }
+  .field-principle-label { color: #e76f51; font-weight: 700; }
+
+  /* 토글 (웜업/쿨다운) */
+  .toggle-section {
+    background: #1a1a1a;
+    border-radius: 12px;
     border: 1px solid #2a2a2a;
     overflow: hidden;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
+  }
+  .toggle-header {
+    padding: 14px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; user-select: none;
+  }
+  .toggle-title { font-size: 13px; font-weight: 700; color: #aaa; }
+  .toggle-arrow { font-size: 12px; color: #555; transition: transform 0.2s; }
+  .toggle-arrow.open { transform: rotate(180deg); }
+  .toggle-body { display: none; padding: 0 20px 16px; }
+  .toggle-body.open { display: block; }
+  .toggle-item {
+    font-size: 12px; color: #777; line-height: 1.8;
+    padding: 4px 0; border-bottom: 1px solid #222;
+  }
+  .toggle-item:last-child { border-bottom: none; }
+
+  /* 카드 */
+  .card {
+    background: #1a1a1a; border-radius: 16px;
+    border: 1px solid #2a2a2a; overflow: hidden; margin-bottom: 12px;
   }
   .card-header {
-    padding: 20px 20px 16px;
-    border-bottom: 1px solid #2a2a2a;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    padding: 20px 20px 16px; border-bottom: 1px solid #2a2a2a;
+    display: flex; justify-content: space-between; align-items: flex-start;
   }
   .card-title { font-size: 18px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 4px; }
   .card-sub { font-size: 13px; color: #888; }
   .card-duration { font-size: 12px; color: #666; margin-top: 4px; }
   .tag {
-    color: #fff;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    padding: 4px 10px;
-    border-radius: 20px;
-    flex-shrink: 0;
+    color: #fff; font-size: 10px; font-weight: 800;
+    letter-spacing: 2px; padding: 4px 10px; border-radius: 20px; flex-shrink: 0;
   }
 
-  .rest-day { padding: 32px 20px; text-align: center; color: #555; }
-  .rest-icon { font-size: 32px; margin-bottom: 12px; }
-  .rest-note { font-size: 14px; color: #888; line-height: 1.7; }
-
+  /* 운동 행 */
   .exercise-row { padding: 16px 20px; border-bottom: 1px solid #222; }
   .exercise-row:last-child { border-bottom: none; }
   .exercise-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 8px;
+    display: flex; justify-content: space-between;
+    align-items: flex-start; margin-bottom: 8px;
   }
   .exercise-left { display: flex; align-items: center; gap: 10px; }
   .ex-num {
-    width: 22px; height: 22px;
-    border-radius: 6px;
+    width: 22px; height: 22px; border-radius: 6px;
     font-size: 11px; font-weight: 800;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .ex-name { font-size: 14px; font-weight: 700; }
   .exercise-right { text-align: right; flex-shrink: 0; margin-left: 12px; }
@@ -109,180 +107,64 @@
   .ex-note { font-size: 12px; color: #777; line-height: 1.6; padding-left: 32px; margin-bottom: 4px; }
   .ex-effect { font-size: 11px; font-weight: 600; padding-left: 32px; }
 
-  /* 기록 입력 영역 */
-  .record-inputs {
-    padding: 12px 20px 16px;
-    border-bottom: 1px solid #222;
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
+  /* 입력칸 */
+  .record-inputs { padding: 10px 20px 14px; display: flex; gap: 8px; flex-wrap: wrap; }
   .record-inputs input {
-    flex: 1;
-    min-width: 60px;
-    background: #111;
-    border: 1px solid #333;
-    border-radius: 8px;
-    color: #f0f0f0;
-    font-size: 12px;
-    padding: 6px 10px;
-    font-family: inherit;
-    text-align: center;
+    flex: 1; min-width: 60px; background: #111; border: 1px solid #333;
+    border-radius: 8px; color: #f0f0f0; font-size: 12px;
+    padding: 6px 10px; font-family: inherit; text-align: center;
   }
   .record-inputs input::placeholder { color: #555; }
 
-  /* 메모 영역 */
+  /* 체크박스 */
+  .check-row {
+    padding: 14px 20px; border-bottom: 1px solid #222;
+    display: flex; align-items: center; gap: 12px; cursor: pointer;
+  }
+  .check-row:last-child { border-bottom: none; }
+  .check-box {
+    width: 22px; height: 22px; border-radius: 6px;
+    border: 2px solid #444; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; transition: all 0.15s;
+  }
+  .check-box.checked { border-color: #2a9d8f; background: #2a9d8f; }
+  .check-box.checked::after { content: "✓"; font-size: 13px; color: #fff; font-weight: 800; }
+  .check-label { font-size: 14px; font-weight: 600; color: #ccc; }
+  .check-sub { font-size: 11px; color: #666; margin-top: 2px; }
+
+  /* 메모 */
   .memo-section {
-    background: #1a1a1a;
-    border-radius: 16px;
-    border: 1px solid #2a2a2a;
-    overflow: hidden;
-    margin-bottom: 16px;
+    background: #1a1a1a; border-radius: 16px;
+    border: 1px solid #2a2a2a; overflow: hidden; margin-bottom: 12px;
   }
-  .memo-header {
-    padding: 14px 20px;
-    border-bottom: 1px solid #2a2a2a;
-    font-size: 13px;
-    font-weight: 700;
-    color: #888;
-    letter-spacing: 1px;
-  }
+  .memo-header { padding: 14px 20px; border-bottom: 1px solid #2a2a2a; font-size: 13px; font-weight: 700; color: #888; }
   .memo-body { padding: 12px 20px 16px; }
   .memo-body textarea {
-    width: 100%;
-    background: #111;
-    border: 1px solid #333;
-    border-radius: 10px;
-    color: #f0f0f0;
-    font-size: 13px;
-    padding: 12px;
-    font-family: inherit;
-    resize: none;
-    line-height: 1.6;
-    min-height: 90px;
+    width: 100%; background: #111; border: 1px solid #333; border-radius: 10px;
+    color: #f0f0f0; font-size: 13px; padding: 12px; font-family: inherit;
+    resize: none; line-height: 1.6; min-height: 90px;
   }
   .memo-body textarea::placeholder { color: #555; }
-  .memo-footer {
-    padding: 0 20px 16px;
-    display: flex;
-    gap: 8px;
-  }
+  .memo-footer { padding: 0 20px 16px; display: flex; gap: 8px; }
 
-  /* 버튼 */
   .btn {
-    padding: 10px 18px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 700;
-    font-family: inherit;
-    transition: all 0.15s;
+    padding: 10px 18px; border-radius: 10px; border: none;
+    cursor: pointer; font-size: 13px; font-weight: 700;
+    font-family: inherit; transition: all 0.15s;
   }
-  .btn-primary {
-    background: #e76f51;
-    color: #fff;
-    flex: 1;
-  }
+  .btn-primary { background: #e76f51; color: #fff; flex: 1; }
   .btn-primary:disabled { background: #444; color: #777; cursor: not-allowed; }
-  .btn-secondary {
-    background: #222;
-    color: #888;
-  }
+  .btn-secondary { background: #222; color: #888; }
 
-  /* 토스트 */
   .toast {
-    position: fixed;
-    bottom: 32px;
-    left: 50%;
+    position: fixed; bottom: 32px; left: 50%;
     transform: translateX(-50%) translateY(80px);
-    background: #222;
-    color: #f0f0f0;
-    padding: 12px 24px;
-    border-radius: 12px;
-    font-size: 13px;
-    font-weight: 600;
-    border: 1px solid #333;
-    transition: transform 0.3s ease;
-    z-index: 999;
-    white-space: nowrap;
+    background: #222; color: #f0f0f0; padding: 12px 24px;
+    border-radius: 12px; font-size: 13px; font-weight: 600;
+    border: 1px solid #333; transition: transform 0.3s ease;
+    z-index: 999; white-space: nowrap;
   }
   .toast.show { transform: translateX(-50%) translateY(0); }
-
-  /* 개요 */
-  .section-label {
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: #555;
-    font-weight: 700;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-  }
-  .overview-card {
-    background: #1a1a1a;
-    border-radius: 12px;
-    border: 1px solid #2a2a2a;
-    overflow: hidden;
-    margin-bottom: 8px;
-  }
-  .overview-row {
-    display: flex;
-    align-items: center;
-    padding: 12px 16px;
-    border-bottom: 1px solid #222;
-    gap: 12px;
-    cursor: pointer;
-    transition: background 0.1s;
-  }
-  .overview-row:last-child { border-bottom: none; }
-  .overview-row:hover { background: #222; }
-  .overview-row.active { background: #222; }
-  .day-badge {
-    width: 28px; height: 28px;
-    border-radius: 8px;
-    font-size: 11px; font-weight: 800;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .overview-info { flex: 1; }
-  .overview-title { font-size: 13px; font-weight: 700; }
-  .overview-sub { font-size: 11px; color: #666; }
-  .overview-tag {
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    padding: 3px 8px;
-    border-radius: 12px;
-  }
-
-  .field-row {
-    padding: 10px 16px;
-    border-top: 1px solid #2a2a2a;
-    display: flex;
-    gap: 8px;
-  }
-  .field-btn {
-    flex: 1;
-    padding: 10px 12px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.15s;
-    border: 1px solid transparent;
-  }
-  .field-btn-title { font-size: 12px; font-weight: 800; }
-  .field-btn-sub { font-size: 11px; color: #888; margin-top: 2px; }
-
-  .tip {
-    margin-top: 16px;
-    padding: 14px 16px;
-    background: #1a1a1a;
-    border-radius: 12px;
-    border: 1px solid #2a2a2a;
-    font-size: 12px;
-    color: #666;
-    line-height: 1.7;
-  }
-  .tip-label { color: #e76f51; font-weight: 700; }
 </style>
 </head>
 <body>
@@ -293,139 +175,132 @@
 </div>
 
 <div class="day-selector" id="daySelector"></div>
+<div id="fieldPrinciple"></div>
+<div id="warmupToggle"></div>
 <div id="cardArea"></div>
+<div id="cooldownToggle"></div>
 <div id="memoArea"></div>
-
-<div class="section-label">Weekly Overview</div>
-<div class="overview-card" id="overviewArea"></div>
-<div class="field-row" id="fieldRow"></div>
-
-<div class="tip">
-  <span class="tip-label">필드 운영 원칙 </span>
-  주 1회 → A 또는 B 택 1, 다음 주에 나머지 수행 · 주 2회 → A·B 각 1회, 사이 하루 이상 간격 필수
-</div>
-
 <div class="toast" id="toast"></div>
 
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzel0wBPAH28c4rcy1YB52i__dsB8AqzoK_HuAYfkigD8f8E3EMt5dmixMgmJb8Q5C9/exec";
 
+const WARMUP_ITEMS = [
+  "월드 그레이티스트 스트레칭 — 왕복 5회",
+  "레그 스윙 앞뒤/좌우 — 각 15회",
+  "카프 레이즈 — 20회",
+];
+const COOLDOWN_ITEMS = [
+  "아동 자세 — 1분",
+  "발목 가동성 스트레칭 — 각 30초",
+];
+const RECOVERY_ITEMS = [
+  { name: "폼롤러 — IT밴드 (허벅지 바깥쪽)", sub: "옆으로 누워 위아래로 1분" },
+  { name: "폼롤러 — 둔근 (엉덩이)", sub: "4자 모양으로 올려 깊은 곳까지 1분" },
+  { name: "폼롤러 — 종아리 & 아킬레스건", sub: "종아리 올려 좌우·위아래 1분" },
+  { name: "피전 자세", sub: "한쪽씩 30초 × 2세트" },
+  { name: "월 스트레칭 (장요근)", sub: "런지 자세로 발등 벽에 기대 30초 × 2세트" },
+  { name: "하프 닐링 햄스트링 스트레칭", sub: "한 무릎 바닥, 반대쪽 뻗어 30초 × 2세트" },
+];
+
+// 입력 방식: 'weight' = 세트/무게/횟수, 'noweight' = 세트/횟수, 'check' = 체크박스, 'none' = 없음
 const days = [
   {
-    id: "mon", label: "월", title: "헬스 Day 1", subtitle: "하체 / 후면 스트렝스",
-    tag: "STRENGTH", color: "#e63946",
+    id: "helsa", label: "헬스 A", title: "헬스 Day A", subtitle: "하체 / 후면 스트렝스",
+    tag: "STRENGTH", color: "#e63946", hasWarmCool: true,
     exercises: [
       { name: "제르셔 스쿼트", volume: "4세트 × 6-8회", rest: "휴식 2분",
         note: "바벨을 팔꿈치 안쪽에 끼고 골반 깊게 열며 앉았다 일어남",
-        effect: "블로킹·잼 시 코어 스트렝스" },
+        effect: "블로킹·잼 시 코어 스트렝스", input: "weight" },
       { name: "케틀벨 스윙", volume: "4세트 × 15회", rest: "휴식 1분 30초",
         note: "힙 힌지 후 골반 튕겨내는 폭발적 힘으로 가슴 높이까지",
-        effect: "둔근·후면 사슬 폭발력 → 초반 가속" },
+        effect: "둔근·후면 사슬 폭발력 → 초반 가속", input: "weight" },
       { name: "짐볼 안티 로테이션 플랭크", volume: "3세트 × 좌우 각 5바퀴", rest: "휴식 1분",
         note: "짐볼 위 팔꿈치 플랭크, 작은 원 그리며 골반 고정",
-        effect: "충돌·착지 후 척추 중심 유지" },
+        effect: "충돌·착지 후 척추 중심 유지", input: "noweight" },
       { name: "풀업", volume: "4세트 × 맥스", rest: "휴식 1분 30초",
         note: "가슴 열어 명치를 바에 가깝게, 내릴 때도 광배근으로 버팀",
-        effect: "하이 포인트 캐치·태클 상체 후면" },
+        effect: "하이 포인트 캐치·태클 상체 후면", input: "noweight" },
       { name: "데드버그", volume: "3세트 × 좌우 각 8회", rest: "휴식 45초",
         note: "허리 바닥 고정, 반대 팔·다리 동시에 뻗고 복귀",
-        effect: "대각선 교차 패턴 각인 → 달리기 자세" },
+        effect: "대각선 교차 패턴 각인 → 달리기 자세", input: "noweight" },
     ]
   },
   {
-    id: "tue", label: "화", title: "완전 휴식", subtitle: "리커버리",
-    tag: "REST", color: "#457b9d", restDay: true,
-    restNote: "수면 7-8시간 / 단백질·수분 충분히", restIcon: "😴"
-  },
-  {
-    id: "wed", label: "수", title: "헬스 Day 2", subtitle: "밸런스 / 상하체 협응",
-    tag: "BALANCE", color: "#f4a261",
+    id: "helsb", label: "헬스 B", title: "헬스 Day B", subtitle: "밸런스 / 상하체 협응",
+    tag: "BALANCE", color: "#f4a261", hasWarmCool: true,
     exercises: [
       { name: "불가리안 스플릿 스쿼트", volume: "3세트 × 한 발당 8회", rest: "휴식 1분 30초",
         note: "뒷발 벤치에 올리고 앞발 뒤꿈치에 체중, 무릎 수직 유지",
-        effect: "컷팅·런닝 시 한 발 지탱력" },
+        effect: "컷팅·런닝 시 한 발 지탱력", input: "weight" },
       { name: "한 팔 한 다리 덤벨 벤치프레스", volume: "4세트 × 각 팔당 8회", rest: "휴식 1분 30초",
         note: "반대쪽 발 들고 한 발로 지탱, 회전 저항하며 수행",
-        effect: "전면 대각선 사슬 → 프레스 릴리즈 교차력" },
+        effect: "전면 대각선 사슬 → 프레스 릴리즈 교차력", input: "weight" },
       { name: "케틀벨 싱글 레그 데드리프트", volume: "3세트 × 한 발당 8회", rest: "휴식 1분",
         note: "한 발 서서 반대 손 케틀벨, 골반 바닥과 평행 유지",
-        effect: "발→골반 정렬 → 런닝 좌우 흐름 차단" },
+        effect: "발→골반 정렬 → 런닝 좌우 흐름 차단", input: "weight" },
       { name: "저항밴드 팔로프 프레스", volume: "3세트 × 양방향 각 12회", rest: "휴식 1분",
         note: "밴드 장력 코어로 버티며 양손 앞으로 뻗었다 복귀",
-        effect: "팔치기 시 상체 출렁임 차단" },
+        effect: "팔치기 시 상체 출렁임 차단", input: "noweight" },
     ]
   },
   {
-    id: "thu", label: "목", title: "리커버리 Day", subtitle: "근막 이완 / 스트레칭",
-    tag: "RECOVERY", color: "#2a9d8f", restDay: true,
-    restNote: "폼롤러 (IT밴드·둔근·종아리) + 피전 자세·월 스트레칭·햄스트링 스트레칭", restIcon: "🔁"
-  },
-  {
-    id: "fri", label: "금", title: "헬스 Day 3", subtitle: "신경계 활성화 / 상체",
-    tag: "NEURAL", color: "#7b2d8b",
+    id: "helsc", label: "헬스 C", title: "헬스 Day C", subtitle: "신경계 활성화 / 상체",
+    tag: "NEURAL", color: "#7b2d8b", hasWarmCool: true,
     exercises: [
       { name: "덤벨 고블릿 스쿼트", volume: "3세트 × 10회", rest: "휴식 1분",
         note: "덤벨 가슴 앞에 세워 들고 깊게 앉음",
-        effect: "고관절 가동성 → 다음 날 필드 힙턴 준비" },
+        effect: "고관절 가동성 → 다음 날 필드 힙턴 준비", input: "weight" },
       { name: "바벨 벤치프레스", volume: "3세트 × 8회", rest: "휴식 1분 30초",
         note: "날개뼈 밀착, 발 고정 후 명치 위로 내렸다 강하게 밀어 올림",
-        effect: "손싸움·블로커 타격 미는 힘 베이스" },
+        effect: "손싸움·블로커 타격 미는 힘 베이스", input: "weight" },
       { name: "루프밴드 몬스터 워크 & 사이드 스텝", volume: "3세트 × 앞15·뒤15·옆15보", rest: "휴식 1분",
         note: "무릎 위 밴드, 낮은 자세로 무릎 안으로 모이지 않게",
-        effect: "중둔근 활성화 → 필드 골반 흐름 차단" },
+        effect: "중둔근 활성화 → 필드 골반 흐름 차단", input: "noweight" },
     ]
   },
   {
-    id: "field-a", label: "필드 A", title: "필드 Day A", subtitle: "민첩성 + 가속",
-    tag: "FIELD", color: "#e76f51", duration: "35-40분",
+    id: "fielda", label: "필드 A", title: "필드 Day A", subtitle: "민첩성 + 가속",
+    tag: "FIELD", color: "#e76f51", hasWarmCool: true, duration: "35-40분",
     exercises: [
-      { name: "웜업", volume: "10분", rest: "",
-        note: "월드 그레이티스트 스트레칭 5회 / 레그 스윙 앞뒤·좌우 각 15회 / 카프 레이즈 20회", effect: "" },
-      { name: "어질리티 래더 드릴 3종", volume: "각 2세트", rest: "15분 블록",
+      { name: "어질리티 래더 드릴 3종", volume: "각 2세트",
         note: "원 인 원 아웃 / 이키 셔플 / 래터럴 인앤아웃 · 마지막 2세트 Stick 훈련",
-        effect: "잔발 스피드·발목 안정성" },
-      { name: "메디신볼 로테이셔널 스로", volume: "3세트 × 좌우 각 5회", rest: "",
+        effect: "잔발 스피드·발목 안정성", input: "check" },
+      { name: "메디신볼 로테이셔널 스로", volume: "3세트 × 좌우 각 5회",
         note: "벽 향해 옆으로 서서 골반 회전 먼저, 상체 따라오며 폭발적으로 던짐",
-        effect: "힙턴 회전 폭발력 각인" },
-      { name: "월오프 가속 드릴", volume: "양발 각 10초 × 3세트", rest: "15분 블록",
+        effect: "힙턴 회전 폭발력 각인", input: "noweight" },
+      { name: "월오프 가속 드릴", volume: "양발 각 10초 × 3세트",
         note: "벽 45도 기울어 무릎 피스톤 액션, 첫 3-5보 추진 각도 각인",
-        effect: "초반 가속 자세" },
+        effect: "초반 가속 자세", input: "noweight" },
       { name: "밴드 저항 스프린트", volume: "15m × 4회", rest: "완전 복귀 후",
         note: "허리 밴드 저항 뚫고 100% 스피드로 질주",
-        effect: "지면 구동력 극대화" },
-      { name: "쿨다운", volume: "5분", rest: "",
-        note: "아동 자세 1분 / 발목 가동성 스트레칭 각 30초", effect: "" },
+        effect: "지면 구동력 극대화", input: "noweight" },
     ]
   },
   {
-    id: "field-b", label: "필드 B", title: "필드 Day B", subtitle: "폭발력 + 인터벌",
-    tag: "FIELD", color: "#e76f51", duration: "35-40분",
+    id: "fieldb", label: "필드 B", title: "필드 Day B", subtitle: "폭발력 + 인터벌",
+    tag: "FIELD", color: "#e76f51", hasWarmCool: true, duration: "35-40분",
     exercises: [
-      { name: "웜업", volume: "10분", rest: "",
-        note: "월드 그레이티스트 스트레칭 5회 / 레그 스윙 앞뒤·좌우 각 15회 / 카프 레이즈 20회", effect: "" },
       { name: "힐런", volume: "20-30m × 4회", rest: "완전 복귀 후 숨 고르고",
         note: "15-20도 경사 전력 질주, 내려올 때 걷기",
-        effect: "둔근·햄스트링 과부하 → 순수 스피드" },
-      { name: "백페달 투 힐런", volume: "3회", rest: "15분 블록",
+        effect: "둔근·햄스트링 과부하 → 순수 스피드", input: "noweight" },
+      { name: "백페달 투 힐런", volume: "3회",
         note: "평지 백페달 5m 후 힙턴하여 언덕 전력 질주",
-        effect: "CB 백페달→전진 전환 민첩성" },
+        effect: "CB 백페달→전진 전환 민첩성", input: "noweight" },
       { name: "실전 가속 인터벌", volume: "30m 질주 → 20m 조깅 × 6회", rest: "복귀 후 30-40초",
         note: "폼 무너지면 그 세트 즉시 종료",
-        effect: "지친 상태 코어 통제력" },
-      { name: "쿨다운", volume: "5분", rest: "",
-        note: "아동 자세 1분 / 발목 가동성 스트레칭 각 30초", effect: "" },
+        effect: "지친 상태 코어 통제력", input: "noweight" },
     ]
   },
   {
-    id: "sun", label: "일", title: "완전 휴식", subtitle: "리커버리",
-    tag: "REST", color: "#457b9d", restDay: true,
-    restNote: "아이싱 (토 필드 후 15분) / 수면 7-8시간 / 단백질·수분", restIcon: "😴"
+    id: "recovery", label: "리커버리", title: "리커버리 Day", subtitle: "근막 이완 / 스트레칭",
+    tag: "RECOVERY", color: "#2a9d8f", isRecovery: true,
   },
 ];
 
-let selected = "mon";
-// 운동별 입력값 저장: { dayId: { exIndex: { set, weight, reps } } }
+let selected = "helsa";
 let recordData = {};
+let checks = {};
 
 function hex(color, alpha) {
   const r = parseInt(color.slice(1,3),16);
@@ -433,11 +308,9 @@ function hex(color, alpha) {
   const b = parseInt(color.slice(5,7),16);
   return `rgba(${r},${g},${b},${alpha})`;
 }
-
 function today() {
   return new Date().toLocaleDateString("ko-KR", { year:"numeric", month:"2-digit", day:"2-digit" });
 }
-
 function showToast(msg, isError) {
   const t = document.getElementById("toast");
   t.textContent = msg;
@@ -446,14 +319,22 @@ function showToast(msg, isError) {
   t.classList.add("show");
   setTimeout(() => t.classList.remove("show"), 2500);
 }
-
-function getInputVal(dayId, exIdx, field) {
-  return (recordData[dayId] && recordData[dayId][exIdx] && recordData[dayId][exIdx][field]) || "";
+function getInput(dayId, exIdx, field) {
+  return (recordData[dayId]?.[exIdx]?.[field]) || "";
 }
-function setInputVal(dayId, exIdx, field, val) {
+function setInput(dayId, exIdx, field, val) {
   if (!recordData[dayId]) recordData[dayId] = {};
   if (!recordData[dayId][exIdx]) recordData[dayId][exIdx] = {};
   recordData[dayId][exIdx][field] = val;
+}
+function getCheck(dayId, key) {
+  return !!(checks[dayId]?.[key]);
+}
+function toggleCheck(dayId, key) {
+  if (!checks[dayId]) checks[dayId] = {};
+  checks[dayId][key] = !checks[dayId][key];
+  renderCard();
+  renderWarmCool();
 }
 
 function renderSelector() {
@@ -464,50 +345,134 @@ function renderSelector() {
   `).join("");
 }
 
-function renderCard() {
+function renderFieldPrinciple() {
   const d = days.find(x => x.id === selected);
-  let body = "";
-
-  if (d.restDay) {
-    body = `<div class="rest-day">
-      <div class="rest-icon">${d.restIcon}</div>
-      <div class="rest-note">${d.restNote}</div>
+  const el = document.getElementById("fieldPrinciple");
+  if (d.tag === "FIELD") {
+    el.innerHTML = `<div class="field-principle">
+      <span class="field-principle-label">필드 운영 원칙 </span>
+      주 1회 → A 또는 B 택 1, 다음 주에 나머지 수행 · 주 2회 → A·B 각 1회, 사이 하루 이상 간격 필수
     </div>`;
   } else {
-    body = d.exercises.map((ex, i) => {
-      const isWarmCool = ex.name === "웜업" || ex.name === "쿨다운";
-      const inputs = isWarmCool ? "" : `
-        <div class="record-inputs">
-          <input type="number" placeholder="세트" min="1"
-            value="${getInputVal(d.id, i, 'set')}"
-            oninput="setInputVal('${d.id}',${i},'set',this.value)" />
-          <input type="number" placeholder="무게(kg)" min="0" step="0.5"
-            value="${getInputVal(d.id, i, 'weight')}"
-            oninput="setInputVal('${d.id}',${i},'weight',this.value)" />
-          <input type="number" placeholder="횟수" min="1"
-            value="${getInputVal(d.id, i, 'reps')}"
-            oninput="setInputVal('${d.id}',${i},'reps',this.value)" />
-        </div>`;
-      return `
-        <div class="exercise-row">
-          <div class="exercise-top">
-            <div class="exercise-left">
-              <div class="ex-num" style="background:${hex(d.color,0.2)};color:${d.color}">${i+1}</div>
-              <div class="ex-name">${ex.name}</div>
-            </div>
-            <div class="exercise-right">
-              <div class="ex-volume" style="color:${d.color}">${ex.volume}</div>
-              ${ex.rest ? `<div class="ex-rest">${ex.rest}</div>` : ""}
-            </div>
-          </div>
-          ${ex.note ? `<div class="ex-note">${ex.note}</div>` : ""}
-          ${ex.effect ? `<div class="ex-effect" style="color:${hex(d.color,0.8)}">→ ${ex.effect}</div>` : ""}
-          ${inputs}
-        </div>`;
+    el.innerHTML = "";
+  }
+}
+
+function renderWarmCool() {
+  const d = days.find(x => x.id === selected);
+  const wu = document.getElementById("warmupToggle");
+  const cd = document.getElementById("cooldownToggle");
+  if (!d.hasWarmCool) { wu.innerHTML = ""; cd.innerHTML = ""; return; }
+
+  const wuOpen = getCheck("toggle", `wu_${selected}`);
+  wu.innerHTML = `
+    <div class="toggle-section">
+      <div class="toggle-header" onclick="toggleCheck('toggle','wu_${selected}')">
+        <span class="toggle-title">🔥 웜업 스트레칭</span>
+        <span class="toggle-arrow ${wuOpen?'open':''}">▼</span>
+      </div>
+      <div class="toggle-body ${wuOpen?'open':''}">
+        ${WARMUP_ITEMS.map(item => `<div class="toggle-item">${item}</div>`).join("")}
+      </div>
+    </div>`;
+
+  const cdOpen = getCheck("toggle", `cd_${selected}`);
+  cd.innerHTML = `
+    <div class="toggle-section">
+      <div class="toggle-header" onclick="toggleCheck('toggle','cd_${selected}')">
+        <span class="toggle-title">🧊 쿨다운 스트레칭</span>
+        <span class="toggle-arrow ${cdOpen?'open':''}">▼</span>
+      </div>
+      <div class="toggle-body ${cdOpen?'open':''}">
+        ${COOLDOWN_ITEMS.map(item => `<div class="toggle-item">${item}</div>`).join("")}
+      </div>
+    </div>`;
+}
+
+function renderCard() {
+  const d = days.find(x => x.id === selected);
+  const el = document.getElementById("cardArea");
+
+  // 리커버리
+  if (d.isRecovery) {
+    const items = RECOVERY_ITEMS.map((item, i) => {
+      const checked = getCheck(d.id, `rec_${i}`);
+      return `<div class="check-row" onclick="toggleCheck('${d.id}','rec_${i}')">
+        <div class="check-box ${checked?'checked':''}"></div>
+        <div>
+          <div class="check-label">${item.name}</div>
+          <div class="check-sub">${item.sub}</div>
+        </div>
+      </div>`;
     }).join("");
+    el.innerHTML = `
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">${d.title}</div>
+            <div class="card-sub">${d.subtitle}</div>
+          </div>
+          <span class="tag" style="background:${d.color}">${d.tag}</span>
+        </div>
+        ${items}
+      </div>`;
+    return;
   }
 
-  document.getElementById("cardArea").innerHTML = `
+  // 일반 운동
+  const body = d.exercises.map((ex, i) => {
+    let inputHtml = "";
+    if (ex.input === "weight") {
+      inputHtml = `<div class="record-inputs">
+        <input type="number" placeholder="세트" min="1"
+          value="${getInput(d.id,i,'set')}"
+          oninput="setInput('${d.id}',${i},'set',this.value)" />
+        <input type="number" placeholder="무게(kg)" min="0" step="0.5"
+          value="${getInput(d.id,i,'weight')}"
+          oninput="setInput('${d.id}',${i},'weight',this.value)" />
+        <input type="number" placeholder="횟수" min="1"
+          value="${getInput(d.id,i,'reps')}"
+          oninput="setInput('${d.id}',${i},'reps',this.value)" />
+      </div>`;
+    } else if (ex.input === "noweight") {
+      inputHtml = `<div class="record-inputs">
+        <input type="number" placeholder="세트" min="1"
+          value="${getInput(d.id,i,'set')}"
+          oninput="setInput('${d.id}',${i},'set',this.value)" />
+        <input type="number" placeholder="횟수" min="1"
+          value="${getInput(d.id,i,'reps')}"
+          oninput="setInput('${d.id}',${i},'reps',this.value)" />
+      </div>`;
+    } else if (ex.input === "check") {
+      const checked = getCheck(d.id, `ex_${i}`);
+      return `<div class="check-row" onclick="toggleCheck('${d.id}','ex_${i}')">
+        <div class="check-box ${checked?'checked':''}"></div>
+        <div style="flex:1">
+          <div class="check-label">${ex.name}</div>
+          <div class="check-sub">${ex.volume}${ex.note ? ' · ' + ex.note : ''}</div>
+          ${ex.effect ? `<div class="check-sub" style="color:#e76f51aa">→ ${ex.effect}</div>` : ""}
+        </div>
+      </div>`;
+    }
+    return `
+      <div class="exercise-row">
+        <div class="exercise-top">
+          <div class="exercise-left">
+            <div class="ex-num" style="background:${hex(d.color,0.2)};color:${d.color}">${i+1}</div>
+            <div class="ex-name">${ex.name}</div>
+          </div>
+          <div class="exercise-right">
+            <div class="ex-volume" style="color:${d.color}">${ex.volume}</div>
+            ${ex.rest ? `<div class="ex-rest">${ex.rest}</div>` : ""}
+          </div>
+        </div>
+        ${ex.note ? `<div class="ex-note">${ex.note}</div>` : ""}
+        ${ex.effect ? `<div class="ex-effect" style="color:${hex(d.color,0.8)}">→ ${ex.effect}</div>` : ""}
+        ${inputHtml}
+      </div>`;
+  }).join("");
+
+  el.innerHTML = `
     <div class="card">
       <div class="card-header">
         <div>
@@ -523,10 +488,6 @@ function renderCard() {
 
 function renderMemo() {
   const d = days.find(x => x.id === selected);
-  if (d.restDay) {
-    document.getElementById("memoArea").innerHTML = "";
-    return;
-  }
   const memoKey = `memo_${selected}`;
   const saved = localStorage.getItem(memoKey) || "";
   document.getElementById("memoArea").innerHTML = `
@@ -550,96 +511,62 @@ async function saveRecord() {
   const d = days.find(x => x.id === selected);
   const memo = document.getElementById("memoText").value.trim();
   const btn = document.getElementById("saveBtn");
-
-  // 운동 rows 수집 (웜업/쿨다운 제외)
-  const rows = d.exercises
-    .map((ex, i) => {
-      if (ex.name === "웜업" || ex.name === "쿨다운") return null;
-      return {
-        exercise: ex.name,
-        set: getInputVal(d.id, i, "set") || "-",
-        weight: getInputVal(d.id, i, "weight") || "-",
-        reps: getInputVal(d.id, i, "reps") || "-",
-      };
-    })
-    .filter(Boolean);
-
-  if (rows.every(r => r.set === "-" && r.weight === "-" && r.reps === "-") && !memo) {
-    showToast("기록할 내용을 입력해주세요", true);
-    return;
-  }
-
-  btn.disabled = true;
-  btn.textContent = "저장 중...";
-
-  // 메모 로컬 저장
   localStorage.setItem(`memo_${selected}`, memo);
 
-  const payload = {
-    type: "record",
-    date: today(),
-    dayLabel: d.label,
-    dayTitle: d.title,
-    memo,
-    rows,
-  };
-
-  try {
-    await fetch(SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+  let rows = [];
+  if (d.isRecovery) {
+    rows = RECOVERY_ITEMS.map((item, i) => ({
+      exercise: item.name,
+      set: getCheck(d.id, `rec_${i}`) ? "✓" : "-",
+      weight: "-", reps: "-",
+    }));
+  } else {
+    rows = d.exercises.map((ex, i) => {
+      if (ex.input === "check") {
+        return { exercise: ex.name, set: getCheck(d.id, `ex_${i}`) ? "✓" : "-", weight: "-", reps: "-" };
+      } else if (ex.input === "weight") {
+        return { exercise: ex.name,
+          set: getInput(d.id,i,"set")||"-",
+          weight: getInput(d.id,i,"weight")||"-",
+          reps: getInput(d.id,i,"reps")||"-" };
+      } else {
+        return { exercise: ex.name,
+          set: getInput(d.id,i,"set")||"-",
+          weight: "-",
+          reps: getInput(d.id,i,"reps")||"-" };
+      }
     });
-    showToast("✅ 구글 시트에 저장됐어요!");
-  } catch (err) {
-    showToast("저장 실패 — 네트워크 확인해주세요", true);
   }
 
-  btn.disabled = false;
-  btn.textContent = "구글 시트에 저장";
-}
-
-function renderOverview() {
-  const mainDays = days.filter(d => !d.id.startsWith("field"));
-  const fieldDays = days.filter(d => d.id.startsWith("field"));
-
-  document.getElementById("overviewArea").innerHTML = mainDays.map(d => `
-    <div class="overview-row ${selected===d.id?'active':''}" onclick="selectDay('${d.id}')">
-      <div class="day-badge" style="background:${hex(d.color,0.15)};color:${d.color}">${d.label}</div>
-      <div class="overview-info">
-        <div class="overview-title">${d.title}</div>
-        <div class="overview-sub">${d.subtitle}</div>
-      </div>
-      <span class="overview-tag" style="color:${d.color};background:${hex(d.color,0.15)}">${d.tag}</span>
-    </div>`).join("");
-
-  document.getElementById("fieldRow").innerHTML = fieldDays.map(d => `
-    <div class="field-btn" onclick="selectDay('${d.id}')"
-      style="background:${selected===d.id?hex(d.color,0.2):hex(d.color,0.07)};
-             border-color:${selected===d.id?d.color:hex(d.color,0.2)}">
-      <div class="field-btn-title" style="color:${d.color}">${d.title}</div>
-      <div class="field-btn-sub">${d.subtitle}</div>
-    </div>`).join("");
+  btn.disabled = true; btn.textContent = "저장 중...";
+  try {
+    await fetch(SCRIPT_URL, {
+      method: "POST", mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type:"record", date:today(), dayLabel:d.label, dayTitle:d.title, memo, rows }),
+    });
+    showToast("✅ 구글 시트에 저장됐어요!");
+  } catch {
+    showToast("저장 실패 — 네트워크 확인해주세요", true);
+  }
+  btn.disabled = false; btn.textContent = "구글 시트에 저장";
 }
 
 function selectDay(id) {
   selected = id;
   renderSelector();
+  renderFieldPrinciple();
+  renderWarmCool();
   renderCard();
   renderMemo();
-  renderOverview();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// 랜덤 명언
 const quotes = [
-  "안되면 될 때까지",
-  "억울하면 강해져라",
+  "안되면 될 때까지","억울하면 강해져라",
   "나는 무서워하면서\n끝까지 걸어가는 사람",
   "니가 있는 곳이 지옥이면\n멈출 이유가 더더욱 없다",
-  "뭐라도 해야지",
-  "봤으면 해라",
+  "뭐라도 해야지","봤으면 해라",
   "벽장의 귀신은\n문을 여는 순간 사라진다",
   "도망치지 마라\n네가 질 싸움이 아니다",
   "Conditions will\nnever be perfect",
@@ -650,12 +577,9 @@ const quotes = [
 ];
 const q = quotes[Math.floor(Math.random() * quotes.length)];
 document.getElementById("mainQuote").innerHTML =
-  q.replace(/\n/g, "<br>") + `<br><span class="header-sub">마스터 루틴 — 주간 스케줄</span>`;
+  q.replace(/\n/g,"<br>") + `<br><span class="header-sub">주간 스케줄</span>`;
 
-renderSelector();
-renderCard();
-renderMemo();
-renderOverview();
+selectDay("helsa");
 </script>
 </body>
 </html>
