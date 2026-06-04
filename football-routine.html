@@ -56,13 +56,13 @@
   .record-inputs input { flex: 1; min-width: 60px; background: #111; border: 1px solid #333; border-radius: 8px; color: #f0f0f0; font-size: 12px; padding: 6px 10px; font-family: inherit; text-align: center; }
   .record-inputs input::placeholder { color: #555; }
 
-  .check-row { padding: 14px 20px; border-bottom: 1px solid #222; display: flex; align-items: center; gap: 12px; cursor: pointer; }
+  .check-row { padding: 14px 20px; border-bottom: 1px solid #222; display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
   .check-row:last-child { border-bottom: none; }
-  .check-box { width: 22px; height: 22px; border-radius: 6px; border: 2px solid #444; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; }
+  .check-box { width: 22px; height: 22px; border-radius: 6px; border: 2px solid #444; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; margin-top: 2px; }
   .check-box.checked { border-color: #2a9d8f; background: #2a9d8f; }
   .check-box.checked::after { content: "✓"; font-size: 13px; color: #fff; font-weight: 800; }
   .check-label { font-size: 14px; font-weight: 600; color: #ccc; }
-  .check-sub { font-size: 11px; color: #666; margin-top: 2px; }
+  .check-sub { font-size: 12px; color: #777; line-height: 1.6; margin-top: 2px; }
 
   .memo-section { background: #1a1a1a; border-radius: 16px; border: 1px solid #2a2a2a; overflow: hidden; margin-bottom: 12px; }
   .memo-header { padding: 14px 20px; border-bottom: 1px solid #2a2a2a; font-size: 13px; font-weight: 700; color: #888; }
@@ -124,19 +124,19 @@ const days = [
     exercises: [
       { name: "제르셔 스쿼트", volume: "4세트 × 6-8회", rest: "휴식 2분",
         note: "바벨을 팔꿈치 안쪽에 끼고 골반 깊게 열며 앉았다 일어남",
-        effect: "블로킹·잼 시 코어 스트렝스", input: "weight" },
+        effect: "블로킹·잼 시 코어 스트렝스", input: "check" },
       { name: "벤치프레스", volume: "4세트 × 6-8회", rest: "휴식 2분",
         note: "날개뼈 밀착, 발 고정 후 명치 위로 내렸다 강하게 밀어 올림",
-        effect: "손싸움·블로커 타격 미는 힘 베이스", input: "weight" },
+        effect: "손싸움·블로커 타격 미는 힘 베이스", input: "check" },
       { name: "OHP", volume: "3세트 × 8회", rest: "휴식 1분 30초",
         note: "서서 바벨을 어깨 앞에서 머리 위로 밀어 올림. 코어 단단히 고정",
-        effect: "상체 전체 수직 밀기 힘 → 패스 블로킹·하이 포인트 강화", input: "weight" },
+        effect: "상체 전체 수직 밀기 힘 → 패스 블로킹·하이 포인트 강화", input: "check" },
       { name: "풀업", volume: "4세트 × 맥스", rest: "휴식 1분 30초",
         note: "가슴 열어 명치를 바에 가깝게, 내릴 때도 광배근으로 버팀",
-        effect: "하이 포인트 캐치·태클 상체 후면", input: "noweight" },
+        effect: "하이 포인트 캐치·태클 상체 후면", input: "check" },
       { name: "저항밴드 로테이션", volume: "3세트 × 양방향 각 12회", rest: "휴식 1분",
         note: "런지 자세로 서서 밴드를 두 손으로 잡고 몸 앞에서 옆으로 회전. 골반 먼저 돌리고 상체 따라옴",
-        effect: "회전 생성 능력 → 힙턴·방향 전환 폭발력", input: "noweight" },
+        effect: "회전 생성 능력 → 힙턴·방향 전환 폭발력", input: "check" },
     ]
   },
   {
@@ -145,25 +145,25 @@ const days = [
     exercises: [
       { name: "불가리안 스플릿 스쿼트", volume: "3세트 × 한 발당 8회", rest: "휴식 1분 30초",
         note: "뒷발 벤치에 올리고 앞발 뒤꿈치에 체중, 무릎 수직 유지",
-        effect: "컷팅·런닝 시 한 발 지탱력", input: "weight" },
+        effect: "컷팅·런닝 시 한 발 지탱력", input: "check" },
       { name: "싱글레그 제르셔 스쿼트", volume: "3세트 × 한 발당 6회", rest: "휴식 2분",
         note: "바벨을 팔꿈치에 끼고 한 발로 무릎 꿇듯 내려갔다가 폭발적으로 일어섬",
-        effect: "한 발 폭발력 → 컷팅 순간 추진력", input: "weight" },
+        effect: "한 발 폭발력 → 컷팅 순간 추진력", input: "check" },
       { name: "케틀벨 스윙", volume: "4세트 × 15회", rest: "휴식 1분 30초",
         note: "힙 힌지 후 골반 튕겨내는 폭발적 힘으로 가슴 높이까지",
-        effect: "둔근·후면 사슬 폭발력 → 초반 가속", input: "weight" },
+        effect: "둔근·후면 사슬 폭발력 → 초반 가속", input: "check" },
       { name: "인버티드 로우", volume: "4세트 × 맥스", rest: "휴식 1분 30초",
         note: "바벨 또는 테이블 밑에 누워 가슴을 바에 당겨 올림. 몸은 일직선 유지",
-        effect: "수평 당기기 패턴 → 상대 잡아당기는 힘 강화", input: "noweight" },
+        effect: "수평 당기기 패턴 → 상대 잡아당기는 힘 강화", input: "check" },
       { name: "누워서 메디신볼 던지기", volume: "3세트 × 10회", rest: "휴식 1분",
         note: "바닥에 누워 메디신볼을 가슴 위로 들었다가 천장을 향해 폭발적으로 던져 올렸다 받음",
-        effect: "전면 폭발력 → 블로킹 초기 충격 생성", input: "weight" },
+        effect: "전면 폭발력 → 블로킹 초기 충격 생성", input: "check" },
       { name: "케틀벨 싱글 레그 데드리프트", volume: "3세트 × 한 발당 8회", rest: "휴식 1분",
         note: "한 발 서서 반대 손 케틀벨, 골반 바닥과 평행 유지",
-        effect: "발→골반 정렬 → 런닝 좌우 흐름 차단", input: "weight" },
+        effect: "발→골반 정렬 → 런닝 좌우 흐름 차단", input: "check" },
       { name: "한 팔 한 다리 덤벨 벤치프레스", volume: "4세트 × 각 팔당 8회", rest: "휴식 1분 30초",
         note: "반대쪽 발 들고 한 발로 지탱, 회전 저항하며 수행",
-        effect: "전면 대각선 사슬 → 프레스 릴리즈 교차력", input: "weight" },
+        effect: "전면 대각선 사슬 → 프레스 릴리즈 교차력", input: "check" },
     ]
   },
   {
@@ -172,22 +172,22 @@ const days = [
     exercises: [
       { name: "데드버그", volume: "3세트 × 좌우 각 8회", rest: "휴식 45초",
         note: "허리 바닥 고정, 반대 팔·다리 동시에 뻗고 복귀",
-        effect: "대각선 교차 패턴 각인 → 달리기 자세", input: "noweight" },
+        effect: "대각선 교차 패턴 각인 → 달리기 자세", input: "check" },
       { name: "팔로프 프레스 (원판)", volume: "3세트 × 양방향 각 12회", rest: "휴식 1분",
         note: "원판을 가슴 앞에 들고 밴드 장력 코어로 버티며 앞으로 뻗었다 복귀",
-        effect: "팔치기 시 상체 출렁임 차단", input: "noweight" },
+        effect: "팔치기 시 상체 출렁임 차단", input: "check" },
       { name: "Ab rollout", volume: "3세트 × 8-10회", rest: "휴식 1분",
         note: "무릎 꿇고 롤아웃 바퀴를 앞으로 밀며 몸을 늘렸다가 복귀. 허리 꺾이지 않게",
-        effect: "전면 코어 전체 강화 → 스프린트 자세 유지", input: "noweight" },
+        effect: "전면 코어 전체 강화 → 스프린트 자세 유지", input: "check" },
       { name: "플랭크 (원판 올려서)", volume: "3세트 × 30-60초", rest: "휴식 1분",
         note: "플랭크 자세에서 등 위에 원판 올려 부하 증가. 골반 수평 유지",
         effect: "코어 정적 강도 → 충돌 후 자세 유지", input: "check" },
       { name: "짐볼 안티 로테이션 플랭크", volume: "3세트 × 좌우 각 5바퀴", rest: "휴식 1분",
         note: "짐볼 위 팔꿈치 플랭크, 작은 원 그리며 골반 고정",
-        effect: "충돌·착지 후 척추 중심 유지", input: "noweight" },
+        effect: "충돌·착지 후 척추 중심 유지", input: "check" },
       { name: "케틀벨 chop", volume: "3세트 × 양방향 각 10회", rest: "휴식 1분",
         note: "케틀벨을 한쪽 어깨 위에서 반대쪽 무릎 방향으로 대각선으로 내려침. 코어 회전 주도",
-        effect: "대각선 코어 폭발력 → 방향 전환 순간 힘 전달", input: "weight" },
+        effect: "대각선 코어 폭발력 → 방향 전환 순간 힘 전달", input: "check" },
     ]
   },
   {
@@ -199,13 +199,13 @@ const days = [
         effect: "잔발 스피드·발목 안정성", input: "check" },
       { name: "메디신볼 로테이셔널 스로", volume: "3세트 × 좌우 각 5회",
         note: "벽 향해 옆으로 서서 골반 회전 먼저, 상체 따라오며 폭발적으로 던짐",
-        effect: "힙턴 회전 폭발력 각인", input: "noweight" },
+        effect: "힙턴 회전 폭발력 각인", input: "check" },
       { name: "월오프 가속 드릴", volume: "양발 각 10초 × 3세트",
         note: "벽 45도 기울어 무릎 피스톤 액션, 첫 3-5보 추진 각도 각인",
-        effect: "초반 가속 자세", input: "noweight" },
+        effect: "초반 가속 자세", input: "check" },
       { name: "밴드 저항 스프린트", volume: "15m × 4회", rest: "완전 복귀 후",
         note: "허리 밴드 저항 뚫고 100% 스피드로 질주",
-        effect: "지면 구동력 극대화", input: "noweight" },
+        effect: "지면 구동력 극대화", input: "check" },
     ]
   },
   {
@@ -217,7 +217,7 @@ const days = [
       { name: "한 발 멀리뛰기", volume: "좌우 각 2회", note: "한 발로 최대한 멀리 뛰어 한 발로 착지 후 안정", effect: "한 발 폭발력·착지 안정성", input: "check" },
       { name: "스프린트", volume: "8회", note: "전력 질주. 완전 복귀 후 숨 고르고 다음 세트", effect: "최대 속도 강화", input: "check" },
       { name: "실전 가속 인터벌", volume: "30m 질주 → 20m 조깅 × 6회", rest: "복귀 후 30-40초",
-        note: "폼 무너지면 그 세트 즉시 종료", effect: "지친 상태 코어 통제력", input: "noweight" },
+        note: "폼 무너지면 그 세트 즉시 종료", effect: "지친 상태 코어 통제력", input: "check" },
     ]
   },
   {
@@ -226,13 +226,13 @@ const days = [
     exercises: [
       { name: "메디신볼 슬램", volume: "3세트 × 10회", rest: "휴식 1분",
         note: "머리 위로 들어 올린 메디신볼을 온몸의 힘으로 바닥에 내리침. 코어와 둔근 동시 수축",
-        effect: "전신 폭발력 → 블로킹 충격 생성", input: "noweight" },
+        effect: "전신 폭발력 → 블로킹 충격 생성", input: "check" },
       { name: "로테이셔널 슬램", volume: "3세트 × 좌우 각 8회", rest: "휴식 1분",
         note: "메디신볼을 옆으로 들어 올렸다가 회전하며 바닥에 내리침. 골반 회전이 시작점",
-        effect: "회전 폭발력 → 힙턴 순간 힘 전달", input: "noweight" },
+        effect: "회전 폭발력 → 힙턴 순간 힘 전달", input: "check" },
       { name: "메디신볼 싯업스로", volume: "3세트 × 10회", rest: "휴식 1분",
         note: "바닥에 누워 싯업 하며 올라오는 순간 메디신볼을 파트너 또는 벽에 던짐",
-        effect: "전면 코어 폭발력 → 스프린트 팔치기 연동", input: "noweight" },
+        effect: "전면 코어 폭발력 → 스프린트 팔치기 연동", input: "check" },
     ]
   },
   {
@@ -343,40 +343,12 @@ function renderCard() {
       return `<div class="check-row" onclick="toggleCheck('${d.id}','ex_${i}')">
         <div class="check-box ${getCheck(d.id,`ex_${i}`)?'checked':''}"></div>
         <div style="flex:1">
-          <div class="check-label">${ex.name}</div>
-          <div class="check-sub">${ex.volume}${ex.note?' · '+ex.note:''}</div>
-          ${ex.effect?`<div class="check-sub" style="color:#e76f51aa">→ ${ex.effect}</div>`:''}
+          <div class="check-label">${ex.name} <span style="font-size:12px; color:${d.color}; margin-left:6px;">${ex.volume}</span>${ex.rest?`<span style="font-size:11px; color:#555; margin-left:6px;">(${ex.rest})</span>`:''}</div>
+          <div class="check-sub">${ex.note?ex.note:''}</div>
+          ${ex.effect?`<div class="check-sub" style="color:${hex(d.color,0.7)}">→ ${ex.effect}</div>`:''}
         </div>
       </div>`;
     }
-    let inputHtml = "";
-    if (ex.input === "weight") {
-      inputHtml = `<div class="record-inputs">
-        <input type="number" placeholder="세트" value="${getInput(d.id,i,'set')}" oninput="setInput('${d.id}',${i},'set',this.value)" />
-        <input type="number" placeholder="무게(kg)" step="0.5" value="${getInput(d.id,i,'weight')}" oninput="setInput('${d.id}',${i},'weight',this.value)" />
-        <input type="number" placeholder="횟수" value="${getInput(d.id,i,'reps')}" oninput="setInput('${d.id}',${i},'reps',this.value)" />
-      </div>`;
-    } else if (ex.input === "noweight") {
-      inputHtml = `<div class="record-inputs">
-        <input type="number" placeholder="세트" value="${getInput(d.id,i,'set')}" oninput="setInput('${d.id}',${i},'set',this.value)" />
-        <input type="number" placeholder="횟수" value="${getInput(d.id,i,'reps')}" oninput="setInput('${d.id}',${i},'reps',this.value)" />
-      </div>`;
-    }
-    return `<div class="exercise-row">
-      <div class="exercise-top">
-        <div class="exercise-left">
-          <div class="ex-num" style="background:${hex(d.color,0.2)};color:${d.color}">${i+1}</div>
-          <div class="ex-name">${ex.name}</div>
-        </div>
-        <div class="exercise-right">
-          <div class="ex-volume" style="color:${d.color}">${ex.volume}</div>
-          ${ex.rest?`<div class="ex-rest">${ex.rest}</div>`:''}
-        </div>
-      </div>
-      ${ex.note?`<div class="ex-note">${ex.note}</div>`:''}
-      ${ex.effect?`<div class="ex-effect" style="color:${hex(d.color,0.8)}">→ ${ex.effect}</div>`:''}
-      ${inputHtml}
-    </div>`;
   }).join("");
 
   el.innerHTML = `<div class="card">
@@ -420,9 +392,7 @@ async function saveRecord() {
     rows = RECOVERY_ITEMS.map((item, i) => ({ exercise: item.name, set: getCheck(d.id,`rec_${i}`)?"✓":"-", weight:"-", reps:"-" }));
   } else {
     rows = d.exercises.map((ex, i) => {
-      if (ex.input === "check") return { exercise: ex.name, set: getCheck(d.id,`ex_${i}`)?"✓":"-", weight:"-", reps:"-" };
-      if (ex.input === "weight") return { exercise: ex.name, set: getInput(d.id,i,"set")||"-", weight: getInput(d.id,i,"weight")||"-", reps: getInput(d.id,i,"reps")||"-" };
-      return { exercise: ex.name, set: getInput(d.id,i,"set")||"-", weight:"-", reps: getInput(d.id,i,"reps")||"-" };
+      return { exercise: ex.name, set: getCheck(d.id,`ex_${i}`)?"✓":"-", weight:"-", reps:"-" };
     });
   }
 
